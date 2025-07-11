@@ -90,5 +90,213 @@ WHERE
      IFNULL(Outlier_Flag_2023,0)
     ) >= 2;
 
+--- Manufacturer Analysis --- 
+SELECT
+    Mftr_Name,
+    COUNT(DISTINCT Brnd_Name) AS unique_brand_count,
+    SUM(Tot_Spndng_2023) AS total_spending_2023
+FROM oncology_drug_data
+GROUP BY Mftr_Name
+ORDER BY total_spending_2023 DESC;
+
+SELECT DISTINCT Brnd_Name 
+FROM oncology_drug_data
+ORDER BY Brnd_Name;
+
+
+--- Data Filtering for Oncology Drugs---
+SELECT *
+FROM oncology_drug_data
+WHERE Brnd_Name IN (
+    'Abraxane',
+    'Afinitor',
+    'Afinitor Disperz',
+    'Alecensa',
+    'Alimta',
+    'Alunbrig',
+    'Arimidex',
+    'Aromasin',
+    'Avastin',
+    'Azacitidine',
+    'Bendamustine',
+    'Bendeka',
+    'Bicalutamide',
+    'Bosulif',
+    'Bortezomib',
+    'Cabometyx',
+    'Calquence',
+    'Caprelsa',
+    'Carboplatin',
+    'Casodex',
+    'Cisplatin',
+    'Copiktra',
+    'Cyramza',
+    'Darzalex',
+    'Decitabine',
+    'Docetaxel',
+    'Doxorubicin HCl',
+    'Doxorubicin HCl Liposome',
+    'Erbitux',
+    'Erleada',
+    'Erlotinib HCl',
+    'Etoposide',
+    'Everolimus',
+    'Exemestane',
+    'Faslodex',
+    'Femara',
+    'Fluorouracil',
+    'Fulvestrant',
+    'Gazyva',
+    'Gemcitabine HCl',
+    'Gleevec'
+)
+OR Gnrc_Name IN (
+    'Abiraterone Acetate',
+    'Azacitidine',
+    'Bendamustine',
+    'Bicalutamide',
+    'Bortezomib',
+    'Cabozantinib',
+    'Calquence',
+    'Carboplatin',
+    'Cisplatin',
+    'Cyclophosphamide',
+    'Cytarabine',
+    'Decitabine',
+    'Docetaxel',
+    'Doxorubicin HCl',
+    'Erlotinib',
+    'Etoposide',
+    'Everolimus',
+    'Exemestane',
+    'Fluorouracil',
+    'Fulvestrant',
+    'Gemcitabine',
+    'Imatinib'
+);
+
+--- Summarize Spending by Drug ---
+SELECT
+    Brnd_Name,
+    Gnrc_Name,
+    SUM(Tot_Spndng_2019) AS total_spending_2019,
+    SUM(Tot_Spndng_2020) AS total_spending_2020,
+    SUM(Tot_Spndng_2021) AS total_spending_2021,
+    SUM(Tot_Spndng_2022) AS total_spending_2022,
+    SUM(Tot_Spndng_2023) AS total_spending_2023,
+    SUM(
+        Tot_Spndng_2019 +
+        Tot_Spndng_2020 +
+        Tot_Spndng_2021 +
+        Tot_Spndng_2022 +
+        Tot_Spndng_2023
+    ) AS total_spending_all_years
+FROM oncology_drug_data
+GROUP BY Brnd_Name, Gnrc_Name
+ORDER BY total_spending_all_years DESC;
+
+--- Summarize Spending by Manufacturer + Drug ---
+SELECT
+    Mftr_Name,
+    Brnd_Name,
+    Gnrc_Name,
+    SUM(Tot_Spndng_2019) AS total_spending_2019,
+    SUM(Tot_Spndng_2020) AS total_spending_2020,
+    SUM(Tot_Spndng_2021) AS total_spending_2021,
+    SUM(Tot_Spndng_2022) AS total_spending_2022,
+    SUM(Tot_Spndng_2023) AS total_spending_2023,
+    SUM(
+        Tot_Spndng_2019 +
+        Tot_Spndng_2020 +
+        Tot_Spndng_2021 +
+        Tot_Spndng_2022 +
+        Tot_Spndng_2023
+    ) AS total_spending_all_years
+FROM oncology_drug_data
+GROUP BY Mftr_Name, Brnd_Name, Gnrc_Name
+ORDER BY total_spending_all_years DESC;
+
+--- Trend Analysis by Drug ---
+SELECT
+    Brnd_Name,
+    Gnrc_Name,
+    SUM(Tot_Spndng_2019) AS total_spending_2019,
+    SUM(Tot_Spndng_2020) AS total_spending_2020,
+    SUM(Tot_Spndng_2021) AS total_spending_2021,
+    SUM(Tot_Spndng_2022) AS total_spending_2022,
+    SUM(Tot_Spndng_2023) AS total_spending_2023
+FROM oncology_drug_data
+GROUP BY Brnd_Name, Gnrc_Name
+ORDER BY total_spending_2023 DESC;
+
+--- Identify High-Price Drugs ---
+SELECT
+    Brnd_Name,
+    Gnrc_Name,
+    AVG(Avg_Spnd_Per_Bene_2019) AS avg_price_per_patient_2019,
+    AVG(Avg_Spnd_Per_Bene_2020) AS avg_price_per_patient_2020,
+    AVG(Avg_Spnd_Per_Bene_2021) AS avg_price_per_patient_2021,
+    AVG(Avg_Spnd_Per_Bene_2022) AS avg_price_per_patient_2022,
+    AVG(Avg_Spnd_Per_Bene_2023) AS avg_price_per_patient_2023
+FROM oncology_drug_data
+GROUP BY Brnd_Name, Gnrc_Name
+ORDER BY avg_price_per_patient_2023 DESC;
+
+--- Manufacturer Market Share ---
+SELECT
+    Mftr_Name,
+    SUM(Tot_Spndng_2019) AS total_spending_2019,
+    SUM(Tot_Spndng_2020) AS total_spending_2020,
+    SUM(Tot_Spndng_2021) AS total_spending_2021,
+    SUM(Tot_Spndng_2022) AS total_spending_2022,
+    SUM(Tot_Spndng_2023) AS total_spending_2023,
+    SUM(
+        Tot_Spndng_2019 +
+        Tot_Spndng_2020 +
+        Tot_Spndng_2021 +
+        Tot_Spndng_2022 +
+        Tot_Spndng_2023
+    ) AS total_spending_all_years,
+    SUM(
+        Tot_Spndng_2019 +
+        Tot_Spndng_2020 +
+        Tot_Spndng_2021 +
+        Tot_Spndng_2022 +
+        Tot_Spndng_2023
+    ) * 100.0 / 
+    (
+        SELECT SUM(
+            Tot_Spndng_2019 +
+            Tot_Spndng_2020 +
+            Tot_Spndng_2021 +
+            Tot_Spndng_2022 +
+            Tot_Spndng_2023
+        )
+        FROM oncology_drug_data
+    ) AS pct_share_all_years
+FROM oncology_drug_data
+GROUP BY Mftr_Name
+ORDER BY total_spending_all_years DESC;
+
+--- Clean Up Brand = Generic Duplicates ---
+CREATE OR REPLACE VIEW oncology_drug_data_clean AS
+SELECT *
+FROM oncology_drug_data
+WHERE Brnd_Name <> Gnrc_Name
+  AND Mftr_Name <> 'Overall';
+
+--- Remove zero-spending drugs ---
+CREATE OR REPLACE VIEW oncology_drug_data_nonzero AS
+SELECT *
+FROM oncology_drug_data_clean
+WHERE 
+    COALESCE(Tot_Spndng_2019,0) +
+    COALESCE(Tot_Spndng_2020,0) +
+    COALESCE(Tot_Spndng_2021,0) +
+    COALESCE(Tot_Spndng_2022,0) +
+    COALESCE(Tot_Spndng_2023,0) > 0;
+    
+SELECT COUNT(*) FROM oncology_drug_data_nonzero;
+
 
 
