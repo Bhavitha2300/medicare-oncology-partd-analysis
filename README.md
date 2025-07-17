@@ -4,6 +4,18 @@ Analyzing Trends and Regional Variations in Oncology Drug Spending under Medicar
 
 ---
 
+## Interactive Dashboard
+
+[View on Tableau Public](https://public.tableau.com/shared/8K47MHZHJ?:display_count=n&:origin=viz_share_link)
+
+Explore interactive visualizations of:
+- Total spending by year
+- Average cost-per-unit trends
+- Top oncology drugs by Medicare Part D spending
+- Treemap showing drug-level spending distribution
+
+---
+
 ## Project Overview
 
 This repository contains analysis of oncology drug spending under Medicare Part D from 2019 to 2023. The project aims to identify trends, cost drivers, and potential variations in spending on cancer-related medications.
@@ -56,34 +68,35 @@ This repository contains analysis of oncology drug spending under Medicare Part 
 
 ## Current Status
 
- Data imported into MySQL and cleaned  
- Oncology drug list curated from brand/generic names  
- Created long-format SQL view for year-over-year analysis  
- Exported oncology-only data to CSV for visualization  
- Began initial analysis of spending trends and top drugs
+- Data imported into MySQL and cleaned  
+- Oncology drug list curated from brand/generic names  
+- Created long-format SQL view for year-over-year analysis  
+- Exported oncology-only data to CSV for visualization  
+- Built Tableau dashboard with key visualizations  
 
 Next steps:
 
-- Build Tableau dashboards (time trends, top drugs, cost-per-unit changes)
 - Identify outlier drugs and cost drivers
-- Summarize insights and publish Tableau Public link
+- Summarize final insights
+- Share with relevant audiences (e.g., health policy, data science)
 
 ---
 
 ## Repository Structure
 
-/sql  
-    Scripts for table creation, data import, and analysis queries
+/sql
+Scripts for table creation, data import, and analysis queries
 
-/tableau  
-    Tableau workbook(s) for visualization
+/tableau
+Tableau workbook(s) for visualization
 
-/notes  
-    Documentation, planning notes, and intermediate outputs
+/notes
+Documentation, planning notes, and intermediate outputs
 
-/Dataset  
-    Raw Medicare Part D file  
-    Exported oncology_drug_data_long_oncology.csv
+/Dataset
+Raw Medicare Part D file
+Exported oncology_drug_data_long_oncology.csv
+
 
 ---
 
@@ -92,5 +105,5 @@ Next steps:
 - Cleaned and processed Medicare Part D oncology drug data
 - SQL scripts for analysis
 - Tableau dashboards published to Tableau Public:
-    - [Link to be added once dashboards are live]
-- Summary of key findings
+  -[View on Tableau Public](https://public.tableau.com/shared/8K47MHZHJ?:display_count=n&:origin=viz_share_link)
+- Summary of key findings  
