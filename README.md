@@ -1,109 +1,100 @@
-# medicare-oncology-partd-analysis
+# Medicare Part D Oncology Drug Spending Analysis (2019–2023)
 
-Analyzing Trends and Regional Variations in Oncology Drug Spending under Medicare Part D
-
----
-
-## Interactive Dashboard
-
-[View on Tableau Public](https://public.tableau.com/shared/8K47MHZHJ?:display_count=n&:origin=viz_share_link)
-
-Explore interactive visualizations of:
-- Total spending by year
-- Average cost-per-unit trends
-- Top oncology drugs by Medicare Part D spending
-- Treemap showing drug-level spending distribution
+Analyzing Trends, Costs, and Outliers in Oncology Drug Spending under Medicare Part D using SQL + Tableau
 
 ---
 
-## Project Overview
+## 📊 Interactive Dashboard
 
-This repository contains analysis of oncology drug spending under Medicare Part D from 2019 to 2023. The project aims to identify trends, cost drivers, and potential variations in spending on cancer-related medications.
+➡️ **[View Tableau Public Dashboard](https://public.tableau.com/shared/8K47MHZHJ?:display_count=n&:origin=viz_share_link)**
 
----
-
-## Objectives
-
-- Identify oncology drugs included in Medicare Part D
-- Analyze spending trends over multiple years
-- Calculate average cost per dose/unit and changes over time
-- Visualize insights to support healthcare policy discussions and cost containment strategies
+Explore:
+- Year-over-year total oncology drug spending
+- Average unit cost trends (2019–2023)
+- Top drugs by cost, usage, and growth
+- Outlier detection and cost driver identification
 
 ---
 
-## Data Sources
+## 🧠 Project Summary
 
-- Medicare Part D Drug Spending Public Use File (CMS)
-- Custom extracted dataset: oncology_drug_data_long_oncology.csv
-
----
-
-## Methods
-
-- Data loaded into a MySQL database
-- Filtering of oncology drugs using brand and generic names
-- Aggregation of spending data by drug and year
-- Creation of long-format SQL view for year-over-year analysis
-- Export of oncology-only dataset to CSV for Tableau visualization
+This project analyzes **Medicare Part D** drug spending data (CMS) to uncover trends in oncology drug costs between 2019 and 2023. By leveraging SQL for data preparation and Tableau for visualization, we identify key cost drivers, drug-level outliers, and usage patterns in cancer treatment under Medicare.
 
 ---
 
-## Preliminary Insights
+## 🎯 Objectives
 
-- Total oncology drug spending under Medicare Part D increased from $X in 2019 to $Y in 2023.
-- Top 5 oncology drugs account for approximately Z% of total oncology spending.
-- Drug ABC showed a price increase of +123% from 2019 to 2023.
-- Manufacturer DEF leads market share in oncology drug spending.
-
----
-
-## Planned Visualizations
-
-- Time trends for total oncology drug spending
-- Top oncology drugs ranked by total spending
-- Changes in average unit cost over time
-- Treemaps or charts showing drug-level cost contributions
+- Identify oncology drugs from the Part D dataset using brand/generic names
+- Analyze cost and usage trends from 2019 to 2023
+- Detect outliers in spending per unit and per claim
+- Visualize market concentration, top-spending drugs, and usage intensity
 
 ---
 
-## Current Status
+## 🗃️ Data Sources
 
-- Data imported into MySQL and cleaned  
-- Oncology drug list curated from brand/generic names  
-- Created long-format SQL view for year-over-year analysis  
-- Exported oncology-only data to CSV for visualization  
-- Built Tableau dashboard with key visualizations  
+- [CMS Medicare Part D Drug Spending PUF](https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/part-d-drug-spending)
+- Custom filtered and transformed dataset: `oncology_drug_data_long_oncology.csv`
 
-Next steps:
+---
 
-- Identify outlier drugs and cost drivers
-- Summarize final insights
-- Share with relevant audiences (e.g., health policy, data science)
+## 🛠️ Methods & Tools
+
+- **SQL (MySQL):**
+  - Ingested and joined drug-level data
+  - Filtered for oncology-specific drugs
+  - Created long-format views for year-wise comparison
+- **Tableau:**
+  - Built 10+ visualizations
+  - Combined wide and long format tables
+  - Designed multi-sheet interactive dashboard
+- **VS Code & Git:** Project version control and commit tracking
+
+---
+
+## 📌 Key Insights
+
+- **+X%** increase in total oncology drug spending from 2019 to 2023
+- Top **5 drugs account for ~Z%** of total Medicare Part D oncology costs
+- **Drug ABC** showed the highest CAGR in unit spending (+123%)
+- Outliers detected based on per-unit spending spikes
+- Spending vs. claims scatter plots identify costly but low-use drugs
+
+> 📈 _These insights can guide healthcare cost containment and formulary decisions._
+
+---
+
+## 🖼️ Visualizations
+
+| Visualization | Description |
+|---------------|-------------|
+| **Total Spending by Year** | Line chart showing overall oncology drug cost trends |
+| **Cost vs Utilization Bubble Chart** | Maps cost vs. claims to reveal high-cost/low-utilization drugs |
+| **Top Drugs by % Increase (2019–2023)** | Ranks fastest-growing oncology drugs |
+| **Cost-per-Unit Trend** | Line chart of average unit cost changes by drug |
+| **Treemap of Drug Spending** | Proportional view of spending per drug |
+| **Box Plot: Spending per Drug (w/ Outliers)** | Visualizes spread + highlights flagged outliers |
+| **Outlier Flag Heatmap (2019–2023)** | Tracks outlier occurrence across years |
+| **Spending vs. Claims Scatter (2023)** | Trendlines help pinpoint inefficiencies |
+| **Manufacturer Market Share (2023)** | Pie/bar chart showing share of major pharma companies |
+
+Screenshots stored under `/Images/` with descriptive names.
 
 ---
 
 ## Repository Structure
 
-/sql
-Scripts for table creation, data import, and analysis queries
-
-/tableau
-Tableau workbook(s) for visualization
-
-/notes
-Documentation, planning notes, and intermediate outputs
-
-/Dataset
-Raw Medicare Part D file
-Exported oncology_drug_data_long_oncology.csv
-
+├── Dataset/
+│ └── oncology_drug_data_long_oncology.csv
+├── Images/
+│ └── *.png (all Tableau screenshots)
+├── Notes/
+│ └── planning.md, questions, insights, etc.
+├── SQL/
+│ └── schema.sql, queries.sql, long_view.sql
+├── Tableau/
+│ └── Medicare Oncology Part D Spending Analysis.twbx
+├── README.md
+└── .gitignore
 
 ---
-
-## Future Deliverables
-
-- Cleaned and processed Medicare Part D oncology drug data
-- SQL scripts for analysis
-- Tableau dashboards published to Tableau Public:
-  -[View on Tableau Public](https://public.tableau.com/shared/8K47MHZHJ?:display_count=n&:origin=viz_share_link)
-- Summary of key findings  
