@@ -1,4 +1,3 @@
-readme_content = """
 # Medicare Part D Oncology Drug Spending Analysis (2019–2023)
 
 Comprehensive data exploration of Medicare Part D oncology drug costs using SQL and Tableau. This project highlights inefficiencies, cost drivers, outliers, and usage patterns to inform data-driven healthcare decisions.
@@ -10,6 +9,7 @@ Comprehensive data exploration of Medicare Part D oncology drug costs using SQL 
 🔗 **[View Dashboard on Tableau Public](https://public.tableau.com/app/profile/bhavitha.asam6391/vizzes)**
 
 The Tableau dashboard features a custom interactive navigation page that allows users to explore insights across six core areas:
+
 - 🧾 **Project Overview**  
 - 📌 **Key Findings**  
 - 💡 **Strategic Insights**  
@@ -70,6 +70,7 @@ This project examines **Medicare Part D oncology drug spending** trends from 201
 
 | Section | Description |
 |--------|-------------|
+| **Navigation Page** | Interactive landing page with buttons to all sections
 | **Project Overview** | Objectives, data sources, key questions |
 | **Key Findings** | High-level trends in total spending, outlier costs, and growth drivers |
 | **Strategic Insights** | Optimization ideas: cost outlier flags, prescriber behavior, procurement risks |
